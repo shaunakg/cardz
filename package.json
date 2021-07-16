@@ -4,7 +4,7 @@
   "description": "This is Cardz - a full featured textbook viewer with flashcard creation and machine learning built in. Don't just read - learn.",
   "author": "Subzero Inc",
   
-  "version": "0.1.2",
+  "version": "0.1.4",
   "main": "./app/main.js",
   "license": "MIT",
   "devDependencies": {
