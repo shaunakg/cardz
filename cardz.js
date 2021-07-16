@@ -52,6 +52,14 @@ fetch("http://localhost:8765", {
         deckopts.appendChild(opt);
 
     }
+
+    if (localStorage.getItem("lastDeck") && data.result.includes(localStorage.getItem("lastDeck"))) {
+        deckopts.value = localStorage.getItem("lastDeck");
+    }
+
+    deckopts.onchange = function(e) {
+        localStorage.setItem("lastDeck", e.target.value);
+    }
     
 }).catch(e => {
     document.getElementById("anki").classList.add("disabled");
