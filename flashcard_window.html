@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Create flashcard</title>
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+
+            padding: 20px;
+            height: 100%;
+
+            flex-direction: column;
+
+            font-family: -apple-system, 'Inter', BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+
+        }
+
+        div#flashcard {
+
+            border: 3px solid #EEE;
+
+            width: 100%;
+            padding: 15px;
+
+            border-radius: 3px;
+
+            box-sizing: border-box;
+        }
+
+        div#flashcard div#front, div#flashcard div#back {
+            background-color: #EEE;
+            padding: 15px;
+            margin: 10px 0;
+
+            border-radius: 3px;
+        }
+
+        div#buttons {
+            margin-top: 20px;
+        }
+
+        div#selected {
+
+            padding: 10px;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            font-size: 0.8rem;
+
+            font-style: italic;
+            border: 3px dashed #EEE;
+            width: 100%;
+
+            box-sizing: border-box;
+            word-wrap: break-word;
+
+            border-radius: 3px;
+            margin-bottom: 15px;
+
+        }
+
+        div#anki {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            width: 100%;
+
+            flex-flow: row wrap;
+            margin-top: 20px;
+
+        }
+
+        div#anki.disabled {
+            pointer-events: none;
+            opacity: 0.5;
+            cursor: not-allowed;
+            flex-wrap: wrap;
+        }
+
+        div#anki .disabled-msg { display: none; margin-top: 15px; }
+
+        div#anki.disabled .disabled-msg {
+            display: block;
+            color: red;
+        }
+
+        div#anki select {
+            flex-grow: 2;
+            width: 65%;
+            box-sizing: border-box;
+        }
+
+        div#anki button {
+            margin-left: 10px;
+            width: 25%;
+            flex-grow: 1;
+        }
+
+        label {
+            color: gray;
+            font-size: 0.8rem;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div id="selected">hi</div>
+
+    <div id="flashcard">
+        <div id="front">loading...</div>
+        <div id="back">loading...</div>
+    </div>
+
+    <div id="anki">
+        
+        <select name="decks" id="decks"></select>
+
+        <button id="addToAnki" disabled>Add to Anki</button>
+
+        <div class="disabled-msg">
+            Please make sure Anki and the AnkiConnect addon are installed and enabled.
+        </div>
+    </div>
+
+    <script src="cardz.js"></script>
+
+</body>
