@@ -11,8 +11,16 @@ function createWindow () {
             webSecurity: false
         }
     })
-  
-    win.loadFile('index.html') 
+
+    if (app.isPackaged) {
+        // workaround for missing executable argument)
+        process.argv.unshift(null)
+    }
+
+    const passedFile = process.argv.slice(2)[0];
+
+    win.loadFile('index.html' + (passedFile ? '?file=' + passedFile : ""));
+    
 }
 
 app.whenReady().then(() => {
