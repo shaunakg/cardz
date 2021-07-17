@@ -20,14 +20,21 @@ fetch(domain + "generate_flashcard", {
 
 }).then(r => r.json()).then(data => {
 
-    front = data.cards[0].question;
-    back = data.cards[0].answer;
+    if (data.success) {
 
-    document.getElementById("front").innerHTML = data.cards[0].question;
-    document.getElementById("back").innerHTML = data.cards[0].answer;
+        front = data.cards[0].question;
+        back = data.cards[0].answer;
 
-    allowAdd = true;
-    document.getElementById("addToAnki").disabled = false;
+        document.getElementById("front").innerHTML = data.cards[0].question;
+        document.getElementById("back").innerHTML = data.cards[0].answer;
+
+        allowAdd = true;
+        document.getElementById("addToAnki").disabled = false;
+
+    } else {
+        document.getElementById("error").innerText = `There was an error creating a flashcard for this prompt. ${data.message || "[General error]"}`;
+        document.getElementById("error").style.display = "block";
+    }
 
 }).catch(e => {
     document.getElementById("error").style.display = "block";
