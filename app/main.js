@@ -25,7 +25,9 @@ function createWindow () {
     console.log(passedFile);
 
     if (passedFile) {
-        win.webContents.send('open-file', passedFile);
+        setTimeout(() => {
+            win.webContents.send('open-file', passedFile);
+        }, 500);
     }
     
 }
