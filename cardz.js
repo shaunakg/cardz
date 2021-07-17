@@ -7,6 +7,7 @@ document.getElementById("selected").innerText = usp.get("text");
 
 let formData = new FormData();
 formData.append("info", usp.get("text"));
+formData.append("filename", usp.get("filename"));
 
 const domain = "https://api.cardly.srg.id.au/"
 
