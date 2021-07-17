@@ -24,7 +24,7 @@
 
         div#flashcard {
 
-            border: 3px solid #EEE;
+            border: 1px solid rgba(255, 255, 255, 0.5);
 
             width: 100%;
             padding: 15px;
@@ -35,11 +35,12 @@
         }
 
         div#flashcard div#front, div#flashcard div#back {
-            background-color: #EEE;
+            background-color: rgba(255, 255, 255, 0.5);
             padding: 15px;
             margin: 10px 0;
 
             border-radius: 3px;
+            user-select: all;
         }
 
         div#buttons {
@@ -53,7 +54,7 @@
             font-size: 0.8rem;
 
             font-style: italic;
-            border: 3px dashed #EEE;
+            border: 1px dashed rgba(255, 255, 255, 0.5);
             width: 100%;
 
             box-sizing: border-box;
@@ -78,7 +79,7 @@
 
         div#anki.disabled {
             pointer-events: none;
-            opacity: 0.5;
+            opacity: 0.7;
             cursor: not-allowed;
             flex-wrap: wrap;
         }
@@ -87,7 +88,7 @@
 
         div#anki.disabled .disabled-msg {
             display: block;
-            color: red;
+            color: coral;
         }
 
         div#anki select {
@@ -107,16 +108,38 @@
             font-size: 0.8rem;
         }
 
+        div#error {
+            display: none;
+            padding: 15px;
+            border: 1px solid red;
+            border-radius: 3px;
+
+            margin-bottom: 15px;
+        }
+
+        @media (prefers-color-scheme: dark) { 
+
+            body {
+                background-color: rgb(59, 41, 61);
+                color: white;
+            }
+
+        }
+
     </style>
 </head>
 
 <body>
 
-    <div id="selected">hi</div>
+    <div id="error">
+        Unable to connect to the server. Try checking your internet connection.
+    </div>
+
+    <div id="selected">Selected text will show up here</div>
 
     <div id="flashcard">
-        <div id="front">loading...</div>
-        <div id="back">loading...</div>
+        <div id="front">Loading...</div>
+        <div id="back">Loading...</div>
     </div>
 
     <div id="anki">

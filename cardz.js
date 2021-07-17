@@ -29,6 +29,8 @@ fetch(domain + "generate_flashcard", {
     allowAdd = true;
     document.getElementById("addToAnki").disabled = false;
 
+}).catch(e => {
+    document.getElementById("error").style.display = "block";
 });
 
 // Connect to Anki
@@ -84,7 +86,8 @@ document.getElementById("addToAnki").onclick = function(e) {
                     "modelName": "Basic",
                     "fields": {
                         "Front": front,
-                        "Back": back
+                        "Back": back,
+                        "Extra": `Flashcard created from this text: "${ usp.get("text") }"`
                     },
                     "tags": [
                         "from-cardz"
@@ -99,6 +102,11 @@ document.getElementById("addToAnki").onclick = function(e) {
             e.target.innerText = "Add to Anki";
         }, 1000);
 
-    });
+    }).catch((e) => {
+        e.target.innerText = "ERROR";
+        setTimeout(() => {
+            e.target.innerText = "Add to Anki";
+        }, 1000);
+    })
 
 }
