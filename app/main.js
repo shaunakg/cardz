@@ -3,23 +3,30 @@ const { app, BrowserWindow } = require('electron');
 try {if (require('electron-squirrel-startup')) return app.quit();} catch {}
 
 function createWindow () {
+
     const win = new BrowserWindow({
         width: 1100,
         height: 680,
-        nodeIntegration: true,
         webPreferences: {
+            nodeIntegration: true,
+            contextIsolation: false,
             webSecurity: false
         }
     })
 
     if (app.isPackaged) {
-        // workaround for missing executable argument)
+        // workaround for missing executable argument
         process.argv.unshift(null)
     }
 
-    const passedFile = process.argv.slice(2)[0];
+    win.loadFile('index.html');
 
-    win.loadFile('index.html' + (passedFile ? '?file=' + passedFile : ""));
+    const passedFile = process.argv.slice(2)[0];
+    console.log(passedFile);
+
+    if (passedFile) {
+        win.webContents.send('open-file', passedFile);
+    }
     
 }
 

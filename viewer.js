@@ -2252,6 +2252,7 @@ function reportPageStatsPDFBug({
 function webViewerInitialized() {
   const appConfig = PDFViewerApplication.appConfig;
   let file;
+
   const queryString = document.location.search.substring(1);
   const params = (0, _ui_utils.parseQueryString)(queryString);
   file = "file" in params ? params.file : _app_options.AppOptions.get("defaultUrl");
@@ -2346,6 +2347,11 @@ function webViewerOpenFileViaURL(file) {
     PDFViewerApplication.open(file);
   }
 }
+
+var ipcRenderer = require('electron').ipcRenderer;
+ipcRenderer.on('open-file', function(event, file) {
+  webViewerOpenFileViaURL(file);
+});
 
 function webViewerResetPermissions() {
   const {
