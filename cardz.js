@@ -9,7 +9,8 @@ let formData = new FormData();
 formData.append("info", usp.get("text"));
 formData.append("filename", usp.get("filename"));
 
-const domain = "https://api.cardly.srg.id.au/"
+const domain = "http://localhost:5000/";
+// const domain = "https://api.cardly.srg.id.au/"
 
 fetch(domain + "generate_flashcard", {
 
