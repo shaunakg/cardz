@@ -4,8 +4,14 @@
     <title>Create flashcard</title>
     <style>
 
+        @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&display=swap');
+
         * {
-            box-sizing: border-box;
+            box-sizing: border-box !important;
+        }
+
+        a {
+            cursor: pointer;
         }
 
         body {
@@ -18,29 +24,50 @@
 
             flex-direction: column;
 
-            font-family: -apple-system, 'Inter', BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+            font-family: 'Lora', serif;
 
         }
 
-        div#flashcard {
+        h2 {
+            margin: 0;
+            margin-bottom: 15px;
+        }
+
+        div.flashcard {
 
             border: 1px solid rgba(255, 255, 255, 0.5);
 
             width: 100%;
             padding: 15px;
+            margin-bottom: 15px;
 
             border-radius: 3px;
 
             box-sizing: border-box;
+            box-shadow: 10px 10px 47px -40px rgba(0,0,0,0.75);
+
         }
 
-        div#flashcard div#front, div#flashcard div#back {
-            background-color: rgba(255, 255, 255, 0.5);
+        div.flashcard.main {
+            border: 2px solid lightgray;
+        }
+
+        div.flashcard.similar-card {
+            border: 2px solid #EEE;
+        }
+
+        div.flashcard > div.card-component {
+            background-color: #EEE;
             padding: 15px;
             margin: 10px 0;
 
             border-radius: 3px;
             user-select: all;
+            word-wrap: break-word;
+        }
+
+        div#flashcard, div#flashcard > div {
+            border: 2px solid #EEE;
         }
 
         div#buttons {
@@ -54,7 +81,7 @@
             font-size: 0.8rem;
 
             font-style: italic;
-            border: 1px dashed rgba(255, 255, 255, 0.5);
+            border: 2px dashed #EEE;
             width: 100%;
 
             box-sizing: border-box;
@@ -66,6 +93,9 @@
         }
 
         div#anki {
+
+            border: 2px dashed #EEE !important;
+            
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -84,7 +114,7 @@
             flex-wrap: wrap;
         }
 
-        div#anki .disabled-msg { display: none; margin-top: 15px; }
+        div#anki .disabled-msg { display: none; margin-top: 15px; font-size: 0.8rem; }
 
         div#anki.disabled .disabled-msg {
             display: block;
@@ -117,19 +147,36 @@
             margin-bottom: 15px;
         }
 
-        @media (prefers-color-scheme: dark) { 
+        div.form {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
 
-            body {
-                background-color: rgb(59, 41, 61);
-                color: white;
-            }
-
+            flex-flow: row wrap;
         }
 
-        @media (prefers-color-scheme: light) {
-            div#flashcard, div#flashcard div {
-                border: 2px solid #EEE;
-            }
+        div.form select {
+            flex-grow: 2;
+            width: 80%;
+        }
+
+        div.form button {
+            width: 20%;
+        }
+
+        div .disabled-message {
+            color: red;
+            font-size: 0.8rem;
+            margin-top: 5px;
+        }
+
+        .vote-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+
+            margin-top: 15px;
         }
 
     </style>
@@ -141,23 +188,11 @@
         Unable to connect to the server. Try checking your internet connection.
     </div>
 
+    <h2>Here's your flashcard</h2>
+
     <div id="selected">Selected text will show up here</div>
 
-    <div id="flashcard">
-        <div id="front">Loading...</div>
-        <div id="back">Loading...</div>
-    </div>
-
-    <div id="anki">
-        
-        <select name="decks" id="decks"></select>
-
-        <button id="addToAnki" disabled>Add to Anki</button>
-
-        <div class="disabled-msg">
-            Please make sure Anki and the AnkiConnect addon are installed and enabled.
-        </div>
-    </div>
+    <div id="cards"></div>
 
     <script src="cardz.js"></script>
 
