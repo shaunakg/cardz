@@ -1,8 +1,10 @@
 
+//
+// Cardz
+//
+
 const usp = new URLSearchParams(window.location.search);
-
 let allowAdd = false, front, back;
-
 document.getElementById("selected").innerText = usp.get("text");
 
 function startAnki() {
