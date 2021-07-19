@@ -10,6 +10,7 @@ function createWindow () {
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: false,
+	    nativeWindowOpen: true,
             webSecurity: false
         }
     })
@@ -19,7 +20,11 @@ function createWindow () {
         process.argv.unshift(null)
     }
 
-    win.loadFile('index.html');
+    if (process.env.DEV) {
+        win.loadURL('http://localhost/index.html', {userAgent:"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.164 Safari/537.36"});
+    } else {
+        win.loadURL(`https://cardz-native.netlify.app/index.html`, {userAgent:"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.164 Safari/537.36"});
+    }
 
     const passedFile = process.argv.slice(2)[0];
     console.log(passedFile);

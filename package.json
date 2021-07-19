@@ -13,7 +13,8 @@
   },
 
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "dev": "DEV=1 electron ."
   },
   "dependencies": { },
   "build": {
