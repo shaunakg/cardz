@@ -21,9 +21,9 @@ function createWindow () {
     }
 
     if (process.env.DEV) {
-        win.loadURL('http://localhost/index.html', {userAgent:"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.164 Safari/537.36"});
+        win.loadURL('http://localhost/index.html');
     } else {
-        win.loadURL(`https://cardz-native.netlify.app/index.html`, {userAgent:"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.164 Safari/537.36"});
+        win.loadURL(`https://cardz-native.netlify.app/index.html`);
     }
 
     const passedFile = process.argv.slice(2)[0];
