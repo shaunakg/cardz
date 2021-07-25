@@ -7,6 +7,7 @@
   "version": "0.3.7",
   "main": "./app/main.js",
   "license": "MIT",
+  
   "devDependencies": {
     "electron-builder": "^22.11.7",
     "electron": "^13.1.7"
